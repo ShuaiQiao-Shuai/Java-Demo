@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="动态数组/src"/>
+	<classpathentry kind="src" path="斐波那楔数/src"/>
+	<classpathentry kind="src" path="链表/src"/>
+	<classpathentry kind="output" path="动态数组/bin"/>
+</classpath>
