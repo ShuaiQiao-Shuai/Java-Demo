@@ -27,15 +27,37 @@ public class LinkedList_双向链表<E> extends AbstractList<E>{
 		
 		checkIndexForAdd(index);
 		
-		if (index == 0) {
-			firstNode = new Node<>(firstNode.prevNode,element, firstNode);
-		}else {
-			//先获取上一个节点的node
-			Node<E> lastNode = getCurrentIndexNode(index - 1);
-			//index新加入node的next指向后一个node
-			//再将上一个node中next指向新加入的node
-			lastNode.nextNode = new Node<>(lastNode,element, lastNode.nextNode);
+//		if (index == 0) {
+//			firstNode = new Node<>(firstNode.prevNode,element, firstNode);
+//		}else {
+//			// ----- 单向链表的写法：
+//			//先获取上一个节点的node
+//			//Node<E> lastNode = getCurrentIndexNode(index - 1);
+//			//index新加入node的next指向后一个node
+//			//再将上一个node中next指向新加入的node
+//			//lastNode.nextNode = new Node<>(lastNode,element, lastNode.nextNode);
+//		}
+		
+		// ----- 双向链表的写法：
+		if (index == size) {//index == size 添加在最后一位
 			
+			Node<E> newNode = new Node<>(lastNode, element, null);
+			if (size == 0) {
+				firstNode = lastNode = newNode;
+			}else {
+				lastNode.nextNode = newNode;
+				lastNode = newNode;
+			}
+		}else {
+			//index == 0 或者 index < size
+			Node<E> node = getCurrentIndexNode(index);
+			Node<E> newNode = new Node<>(node.prevNode, element, node);
+			node.prevNode = newNode;
+			if (node.prevNode == null) {//index == 0 的情况
+				firstNode = newNode;
+			}else {
+				node.prevNode.nextNode = newNode;
+			}
 		}
 		size++;
 		
