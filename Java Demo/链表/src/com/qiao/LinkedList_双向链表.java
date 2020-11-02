@@ -25,19 +25,7 @@ public class LinkedList_双向链表<E> extends AbstractList<E>{
 	@Override
 	public void addElementWithIndex(int index, E element) {
 		
-		checkIndexForAdd(index);
-		
-//		if (index == 0) {
-//			firstNode = new Node<>(firstNode.prevNode,element, firstNode);
-//		}else {
-//			// ----- 单向链表的写法：
-//			//先获取上一个节点的node
-//			//Node<E> lastNode = getCurrentIndexNode(index - 1);
-//			//index新加入node的next指向后一个node
-//			//再将上一个node中next指向新加入的node
-//			//lastNode.nextNode = new Node<>(lastNode,element, lastNode.nextNode);
-//		}
-		
+		checkIndexForAdd(index);	
 		// ----- 双向链表的写法：
 		if (index == size) {//index == size 添加在最后一位
 			
@@ -69,14 +57,40 @@ public class LinkedList_双向链表<E> extends AbstractList<E>{
 	@Override
 	public void removeElementAtIndex(int index) {
 		checkIndex(index);
-		if (index == 0) {
-			firstNode = firstNode.nextNode;
-			firstNode.prevNode = firstNode;
+		
+		Node<E> node = getCurrentIndexNode(index);
+		Node<E> next = node.nextNode;
+		Node<E> last = node.prevNode;
+		
+		if (last == null) { // index == 0
+			firstNode = next;
 		}else {
-			Node<E> node = getCurrentIndexNode(index - 1);
-			node.nextNode = node.nextNode.nextNode;
-			node.nextNode.prevNode = node;
+			last.nextNode = next;
 		}
+		
+		if (next == null) { // index == size - 1
+			lastNode = last;
+		}else {
+			next.prevNode = last;
+		}
+		
+		//用下面这个方法等效
+		
+//		if (size == 1) {
+//			firstNode = lastNode = null;
+//		}else {
+//			Node<E> node = getCurrentIndexNode(index);
+//			if (index == 0) {
+//				firstNode = node.nextNode;
+//				firstNode.prevNode = null;
+//			}else if (index == (size -1)) {
+//				lastNode = node.prevNode;
+//				lastNode.nextNode = null;
+//			}else {
+//				node.prevNode.nextNode = node.nextNode;
+//				node.nextNode.prevNode = node.prevNode;
+//			}
+//		}
 		size--;
 	}
 	
