@@ -117,7 +117,7 @@ public class DynamicArray<E> {
 		
 		//扩容的原理就是申请一个新的更大的数组，让原数组内存地址指向新的数组
 		//旧数组会自动释放
-		int newArraySize = oldSize + (oldSize >> 1);//位运算 (>>1)相当于除以2  (<<1)相当于乘以2
+		int newArraySize = oldSize + (oldSize >> 1);//位运算 (>>1)相当于除以2=(2^1)  (<<1)相当于乘以2=(2^1)
 		
 		E[] newArray = (E[]) new Object[newArraySize];
 		
