@@ -4,20 +4,16 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		List<Integer> list = new LinkedList<>();
+		List<Integer> list = new LinkedList_单向环形链表<>();
 		
-		list.add(20);
+		list.add(11);
+		list.add(12);
+		list.addElementWithIndex(list.size(),13);
 		list.addElementWithIndex(0, 10);
-		list.add(30);
-		list.addElementWithIndex(list.size(), 40);
 		
-		list.removeElementAtIndex(1);
+		//list.removeElementAtIndex(0);
 		
-		list.setElementWithIndex(1, 11);
-		
-		System.out.println(list.getElementFromIndex(1));
-		
-		
+		System.out.println(list);
 
 	}
 
