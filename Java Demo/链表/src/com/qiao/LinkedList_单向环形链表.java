@@ -53,7 +53,7 @@ public class LinkedList_单向环形链表<E> extends AbstractList<E>{
 			}
 		}else {
 			Node<E> node = getCurrentIndexNode(index - 1);
-			node.nextNode = (index == size -1) ? firstNode : node.nextNode.nextNode;
+			node.nextNode = node.nextNode.nextNode;
 		}
 		size--;
 	}
